@@ -32,7 +32,7 @@ router.post('/',validateProjectPost, async(req, res) => {
     }
 });
 
-router.put('/:id', async(req, res) => {
+router.put('/:id', validateProjectPost, async(req, res) => {
     const {id} = req.params;
     try {
         const updatedProject = await projectDb.update(id, req.body);
@@ -58,7 +58,7 @@ function validateProjectPost(req, res, next) {
     if(!name) {
         res.status(400).json({message: "Kindly include the name of the project"})
     } else if (!description) {
-        res.status(400).json({ message: "a description of the action is required" })
+        res.status(400).json({ message: "a description of the project is required" })
     } else {
         next();
     }

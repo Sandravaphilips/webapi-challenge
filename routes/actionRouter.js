@@ -21,7 +21,7 @@ router.post('/', validateActionPost, async(req, res) => {
     }
 });
 
-router.put('/:id', async(req, res) => {
+router.put('/:id', validateActionPost, async(req, res) => {
     const {id} = req.params;
     try {
         const updatedAction = await actionDb.update(id, req.body);
