@@ -10,7 +10,7 @@ router.get('/', async(req, res) => {
     } catch {
         return res.status(500).json({error: "Internal server error"})
     }
-})
+});
 
 router.post('/', async(req, res) => {
     try {
@@ -19,4 +19,24 @@ router.post('/', async(req, res) => {
     } catch {
         return res.status(500).json({error: "Internal server error"})
     }
-})
+});
+
+router.put('/:id', async(req, res) => {
+    const {id} = req.params;
+    try {
+        const updatedProject = await projectDb.update(id, req.body);
+        return res.status(200).json(updatedProject)
+    } catch {
+        return res.status(500).json({error: "Internal server error"})
+    }
+});
+
+router.delete('/:id', async(req, res) => {
+    const {id} = req.params;
+    try {
+        await projectDb.remove(id);
+        res.status(200).json({message: "The project has been successfully deleted"})
+    } catch {
+        return res.status(500).json({error: "Internal server error"})
+    }
+});
