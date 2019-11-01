@@ -23,7 +23,7 @@ router.get('/', async(req, res) => {
     }
 });
 
-router.post('/', async(req, res) => {
+router.post('/',validateProjectPost, async(req, res) => {
     try {
         const newProject = await projectDb.insert(req.body);
         return res.status(201).json(newProject);
@@ -52,5 +52,16 @@ router.delete('/:id', async(req, res) => {
     }
 });
 
+function validateProjectPost(req, res, next) {
+    const {name, description} = req.body;
+
+    if(!name) {
+        res.status(400).json({message: "Kindly include the name of the project"})
+    } else if (!description) {
+        res.status(400).json({ message: "a description of the action is required" })
+    } else {
+        next();
+    }
+};
 
 module.exports = router;
