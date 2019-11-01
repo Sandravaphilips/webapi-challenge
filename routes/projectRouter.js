@@ -3,6 +3,17 @@ const projectDb = require('../data/helpers/projectModel');
 
 const router = express.Router();
 
+router.get('/:id/actions', async(req, res) => {
+    const {id} = req.params;
+
+    try {
+        const projectActions = await projectDb.getProjectActions(id);
+        return res.status(200).json(projectActions);
+    } catch {
+        return res.status(500).json({error: "Internal server error"})
+    }
+})
+
 router.get('/', async(req, res) => {
     try {
         const projects = await projectDb.get();
@@ -40,3 +51,5 @@ router.delete('/:id', async(req, res) => {
         return res.status(500).json({error: "Internal server error"})
     }
 });
+
+
