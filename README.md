@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+We learned about the router method of express that helps us break down our application into smaller components and conveniently link them together. We also learned about express middleware that performs some validation before our request is sent, reduces repetition and keeps our code clean.
+
 - [ ] Describe Middleware?
+
+Middlewares are functions executed in the middle after the incoming request which produce an output which could be the final output passed or could be used by the next middleware until the cycle is completed, meaning we can have more than one middleware and they will execute in the order they are declared.
 
 - [ ] Describe a Resource?
 
+A resource is an object with a type, associated data, relationships to other resources, and a set of methods that operate on it. It is the fundamental concept in any RESTful API.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+A request may return a response with status code, telling the client if the request was successful or not, and/or sending a response message telling the client, if the request was successful or not and what error was generated.
+
 - [ ] How can we partition our application into sub-applications?
+
+We can partition our apps into sub apps by using the router method of express and the export / require features of javaScript.
 
 ## Project Setup
 
